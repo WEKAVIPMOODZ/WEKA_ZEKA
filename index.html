@@ -420,7 +420,7 @@
     </div>
   </div>
 
-  <!-- قسم مشغل الريكورد الصوتي عبر يوتيوب بدون إظهار الفيديو -->
+  <!-- قسم مشغل الريكورد الصوتي -->
   <div class="audio-section">
     <div class="audio-player-card">
       <div class="audio-title">
@@ -428,7 +428,7 @@
         <span>ريكورد سـري مـن ويـڪـا</span>
       </div>
 
-      <!-- عنصر يوتيوب مخفي تماماً -->
+      <!-- عنصر يوتيوب مخفي -->
       <div id="hidden-youtube-player" style="display:none;"></div>
 
       <div class="audio-controls">
@@ -475,7 +475,17 @@
       }
     });
 
-    // تحميل مكتبة يوتيوب API للتحكم بالصوت في الخلفية
+    // ضع رابط يوتيوب العادي هنا مباشرة وسيتم استخراج الـ ID تلقائياً
+    const youtubeFullUrl = "https://www.youtube.com/watch?v=-csWXqFFzdU&list=RD-csWXqFFzdU&start_radio=1";
+
+    function extractYouTubeID(url) {
+      let match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+      return match ? match[1] : null;
+    }
+
+    const youtubeVideoId = extractYouTubeID(youtubeFullUrl);
+
+    // تحميل مكتبة يوتيوب API
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -483,10 +493,6 @@
 
     var ytPlayer;
     var updateTimer;
-
-    // استبدل "113u1apo2495" بمعرف فيديو يوتيوب الخاص بك (رابط يوتيوب يحتوي على معرّف الفيديو مثل dQw4w9WgXcQ)
-    // أو إذا كان الرابط كاملاً استخرج الـ ID منه وضعه هنا:
-    const youtubeVideoId = '-csWXqFFzdU'; // ضع الـ ID الخاص بفيديو يوتيوب هنا
 
     function onYouTubeIframeAPIReady() {
       ytPlayer = new YT.Player('hidden-youtube-player', {
