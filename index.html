@@ -1,0 +1,563 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEKA VIP - رقم واحد علي الڪوڪب 😈</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-yellow: #ffd700;
+      --main-red: #ff0000;
+      --dark-bg: #0a0a0a;
+      --card-bg: #141414;
+      --glow-yellow: rgba(255, 215, 0, 0.6);
+      --glow-red: rgba(255, 0, 0, 0.6);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--dark-bg);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(255, 0, 0, 0.05) 0%, transparent 30%);
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+    
+    /* حاوية الورد والثلج المتساقط بالراحة وبشكل رقيق */
+    .snow-rose-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1; /* فوق الخلفية وتحت المحتوى عشان ميعطلش الكراسات والأزرار */
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .falling-item {
+      position: absolute;
+      top: -50px;
+      user-select: none;
+      pointer-events: none;
+      animation: fallDown linear infinite;
+    }
+
+    @keyframes fallDown {
+      0% {
+        transform: translateY(-50px) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      90% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(105vh) translateX(30px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* كيرف رأس الصفحة */
+    .header-wave {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,0,0,0.15) 0%, transparent 100%);
+      padding: 30px 15px 50px 15px;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+      z-index: 2;
+    }
+    
+    .logo-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    
+    .logo {
+      max-width: 260px;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 0 35px var(--glow-red);
+      border: 3px solid var(--main-red);
+      transition: all 0.4s ease;
+      animation: logoGlow 3s infinite alternate;
+      display: block;
+    }
+    
+    @keyframes logoGlow {
+      0% { box-shadow: 0 0 20px var(--glow-red); }
+      100% { box-shadow: 0 0 45px var(--glow-red), 0 0 70px rgba(255, 0, 0, 0.4); }
+    }
+    
+    .logo:hover {
+      transform: scale(1.04) rotate(1deg);
+      box-shadow: 0 0 55px var(--glow-red);
+    }
+    
+    .vip-badge {
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      background: linear-gradient(45deg, #ffd700, #ff8c00);
+      color: #000;
+      font-weight: 900;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 16px;
+      transform: rotate(-15deg);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+      z-index: 10;
+      animation: badgePulse 2s infinite;
+    }
+    
+    @keyframes badgePulse {
+      0%, 100% { transform: rotate(-15deg) scale(1); }
+      50% { transform: rotate(-15deg) scale(1.1); }
+    }
+    
+    h1 {
+      font-size: 32px;
+      color: var(--main-red);
+      text-shadow: 0 0 12px rgba(255,0,0,0.7);
+      margin-bottom: 12px;
+      font-weight: 900;
+    }
+    
+    .subtitle {
+      color: var(--main-yellow);
+      font-size: 18px;
+      max-width: 90%;
+      margin: 0 auto;
+      font-weight: 600;
+    }
+    
+    /* الشريط المتحرك */
+    .scroll-text {
+      background: rgba(0, 0, 0, 0.85);
+      border-top: 2px solid var(--main-red);
+      border-bottom: 2px solid var(--main-red);
+      padding: 12px 0;
+      margin: 35px 0;
+      overflow: hidden;
+      z-index: 2;
+      position: relative;
+    }
+    
+    .marquee {
+      display: flex;
+      animation: marquee 22s linear infinite;
+    }
+    
+    .marquee span {
+      padding: 0 30px;
+      font-weight: 700;
+      font-size: 19px;
+      white-space: nowrap;
+      color: var(--main-yellow);
+    }
+    
+    .marquee span:nth-child(odd) {
+      color: var(--main-red);
+    }
+    
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    /* الكروت */
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 0 20px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .card {
+      background: var(--card-bg);
+      border: 2px solid rgba(255, 215, 0, 0.4);
+      border-radius: 24px;
+      padding: 25px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--main-red), var(--main-yellow));
+    }
+    
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(255, 215, 0, 0.25);
+      border-color: var(--main-yellow);
+    }
+    
+    .card h3 {
+      color: var(--main-yellow);
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    
+    .card p {
+      color: #ddd;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    
+    .card-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    /* مشغل الريكورد الصوتي */
+    .audio-section {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .audio-player-card {
+      background: linear-gradient(135deg, rgba(20,20,20,0.95), rgba(30,30,30,0.95));
+      border: 2px solid var(--main-red);
+      border-radius: 30px;
+      padding: 25px 20px;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .audio-title {
+      color: var(--main-yellow);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .audio-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .play-btn {
+      background: linear-gradient(45deg, var(--main-red), #b30000);
+      border: none;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px var(--glow-red);
+      transition: all 0.3s ease;
+      outline: none;
+      flex-shrink: 0;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px var(--glow-red);
+    }
+
+    .progress-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #333;
+      border-radius: 10px;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--main-red), var(--main-yellow));
+      border-radius: 10px;
+      transition: width 0.1s linear;
+    }
+
+    .time-display {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #aaa;
+    }
+    
+    /* الفوتر */
+    footer {
+      margin-top: 50px;
+      padding: 25px 20px;
+      font-size: 14px;
+      color: #888;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      background: rgba(15, 15, 15, 0.9);
+      border-top: 1px solid rgba(255, 215, 0, 0.2);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .copyright {
+      font-size: 16px;
+      color: var(--main-yellow);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    
+    .warning {
+      color: var(--main-red);
+      font-weight: 700;
+      font-size: 18px;
+      margin-top: 10px;
+      animation: warningPulse 2s infinite;
+    }
+    
+    @keyframes warningPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    
+    /* التجاوب مع الجوال */
+    @media (max-width: 480px) {
+      .logo {
+        max-width: 210px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      .subtitle {
+        font-size: 15px;
+      }
+      
+      .vip-badge {
+        font-size: 13px;
+        padding: 5px 12px;
+      }
+
+      .audio-player-card {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- حاوية تساقط الورد والثلج الهادئ والرقيق -->
+  <div class="snow-rose-container" id="snowRoseContainer"></div>
+  
+  <!-- رأس الصفحة بخلفية انسيابية (Curve) -->
+  <header class="header-wave">
+    <div class="logo-container">
+      <div class="vip-badge">VIP</div>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEibbELtXuQWergFTvgNxLjmCLVCutqdIx5kbopyqjieYnvmrG65e5l2nO4RNtXvZkKmLVnygxoAOLvR_8MjZWn1naCk7w2inwkc1K3wN0iB7yIGhaXdDHXdDztW_n2e_8aPH-2o_KCYx_icnmsJP3dJK4qMfEDwU1wohxqMQGBCBozycg/w72-h72-p-k-no-nu/photo_%D9%A2%D9%A0%D9%A2%D9%A5-%D9%A1%D9%A2-%D9%A1%D9%A0_%D9%A1%D9%A2-%D9%A2%D9%A7-%D9%A4%D9%A3.jpg" alt="WEKA VIP Logo" class="logo">
+    </div>
+    
+    <h1>ويـــڪـــا هــيـفـــضل ڪبــيــرهــــا ☑😱</h1>
+    <p class="subtitle">مش كل اللي كتب كود اصبح مطور مع تحياتي ويڪا 😵</p>
+  </header>
+  
+  <!-- الشريط المتحرك -->
+  <div class="scroll-text">
+    <div class="marquee">
+      <span>لو البلد كان فيها قانون كان زمن ويڪا مسجون 🥱</span>
+      <span>ويڪا رقم واحد علي الڪوڪب 😈</span>
+      <span>خلي بالك من ويڪا 👿⚡</span>
+      <span>ويڪا مش هتوقف عن الصدمات 😎</span>
+      <span>WEKA VIP الأعلي دائماً 👑</span>
+      <span>لو البلد كان فيها قانون كان زمن ويڪا مسجون 🥱</span>
+      <span>ويڪا رقم واحد علي الڪوڪب 😈</span>
+      <span>خلي بالك من ويڪا 👿⚡</span>
+    </div>
+  </div>
+  
+  <!-- الكروت -->
+  <div class="cards-container">
+    <div class="card">
+      <div class="card-icon">👑</div>
+      <h3>WEKA VIP</h3>
+      <p>༆💛 خــلَــي بــآلَك مـــن ويڪا 💛༆</p>
+      <p>ويڪا مش مجرد حساب، دي مدرسة في عالم التكنولوجيا والصدمات. الجرأة والإبداع سمة أساسية هنا.</p>
+    </div>
+    
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>الصدمات التقنية</h3>
+      <p>بنقدم محتوي صادم وتقني بيقلب الموازين. خليك متابع دايماً عشان تفضل في قلب الحدث.</p>
+    </div>
+    
+    <div class="card">
+      <div class="card-icon">🔥</div>
+      <h3>رقم واحد</h3>
+      <p>ويڪا رقم واحد في تقديم المحتوي الصادم والمميز. دايماً بيقدم اللي مش موجود في أي مكان تاني.</p>
+    </div>
+  </div>
+
+  <!-- قسم مشغل الريكورد الصوتي -->
+  <div class="audio-section">
+    <div class="audio-player-card">
+      <div class="audio-title">
+        <span>🎧</span>
+        <span>مشغل الصوت الخاص بـ WEKA VIP</span>
+      </div>
+
+      <!-- عنصر الصوت (ضع رابط الأغنية المباشر هنا) -->
+      <audio id="myAudio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+      <div class="audio-controls">
+        <button class="play-btn" id="playBtn">▶</button>
+        <div class="progress-container">
+          <div class="progress-bar" id="progressBar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="time-display">
+            <span id="currentTime">00:00</span>
+            <span id="duration">00:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- الفوتر -->
+  <footer>
+    <div class="copyright">© 2025 WEKA VIP - جميع الحقوق محفوظة</div>
+    <p>ممنوع النسخ أو التقليد، ويڪا بيشوف كل حاجة 👀</p>
+    <div class="warning">⚠️ خلي بالك من ويڪا ⚠️</div>
+  </footer>
+  
+  <script>
+    // توليد تأثير الورد والثلج الهادئ والرقيق بشكل عشوائي
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.getElementById('snowRoseContainer');
+      const symbols = ['❄', '🌸', '✨', '🌹', '❄', '🌸']; // مزيج من الثلج والورد الناعم واللمعات
+      const count = 20; // عدد العناصر عشان يكون خفيف ورقيق ومش زحمة
+      
+      for (let i = 0; i < count; i++) {
+        const item = document.createElement('div');
+        item.classList.add('falling-item');
+        
+        // اختيار شكل عشوائي (وردة أو ثلجة أو لمعة)
+        item.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+        
+        // مكان عشوائي في العرض
+        item.style.left = Math.random() * 100 + '%';
+        
+        // حجم رقيق وصغير
+        const size = Math.random() * 12 + 10; // بين 10px و 22px
+        item.style.fontSize = `${size}px`;
+        
+        // سرعة سقوط بطيئة وهادية عشان يبقى رقيق
+        const duration = Math.random() * 10 + 8; // بين 8 و 18 ثانية
+        item.style.animationDuration = `${duration}s`;
+        
+        // تأخير عشوائي للبداية عشان ميبدوش كلهم سوا
+        const delay = Math.random() * 10;
+        item.style.animationDelay = `${delay}s`;
+        
+        // شفافية عشوائية خفيفة
+        item.style.opacity = Math.random() * 0.5 + 0.3;
+        
+        container.appendChild(item);
+      }
+    });
+
+    // التحكم في مشغل الريكورد الصوتي
+    const audio = document.getElementById('myAudio');
+    const playBtn = document.getElementById('playBtn');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const currentTimeEl = document.getElementById('currentTime');
+    const durationEl = document.getElementById('duration');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = '❚❚';
+      } else {
+        audio.pause();
+        playBtn.textContent = '▶';
+      }
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) {
+        const progressPercent = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = `${progressPercent}%`;
+
+        let currentMinutes = Math.floor(audio.currentTime / 60);
+        let currentSeconds = Math.floor(audio.currentTime % 60);
+        if (currentSeconds < 10) currentSeconds = `0${currentSeconds}`;
+        currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`;
+
+        let durationMinutes = Math.floor(audio.duration / 60);
+        let durationSeconds = Math.floor(audio.duration % 60);
+        if (durationSeconds < 10) durationSeconds = `0${durationSeconds}`;
+        durationEl.textContent = `${durationMinutes}:${durationSeconds}`;
+      }
+    });
+
+    progressBar.addEventListener('click', (e) => {
+      const width = progressBar.clientWidth;
+      const clickX = e.offsetX;
+      const duration = audio.duration;
+      if (duration) {
+        audio.currentTime = (clickX / width) * duration;
+      }
+    });
+
+    audio.addEventListener('ended', () => {
+      playBtn.textContent = '▶';
+      progressFill.style.width = '0%';
+    });
+  </script>
+  
+</body>
+</html>
