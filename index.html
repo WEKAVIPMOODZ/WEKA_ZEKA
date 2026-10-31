@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
@@ -145,29 +145,48 @@
       margin: 0 auto;
       font-weight: 600;
     }
+
+    /* عنوان شريط الأخبار */
+    .news-ticker-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(255, 215, 0, 0.2));
+      border: 1px solid var(--main-yellow);
+      color: var(--main-yellow);
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: 35px;
+      margin-bottom: -10px;
+      position: relative;
+      z-index: 3;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+    }
     
-    /* الشريط المتحرك */
+    /* الشريط المتحرك (من الشمال لليمين) */
     .scroll-text {
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.9);
       border-top: 2px solid var(--main-red);
       border-bottom: 2px solid var(--main-red);
-      padding: 12px 0;
-      margin: 35px 0;
+      padding: 10px 0;
+      margin: 20px 0 35px 0;
       overflow: hidden;
       z-index: 2;
       position: relative;
+      white-space: nowrap;
     }
     
     .marquee {
-      display: flex;
-      animation: marquee 22s linear infinite;
+      display: inline-block;
+      animation: marquee 30s linear infinite;
     }
     
     .marquee span {
-      padding: 0 30px;
+      padding: 0 40px;
       font-weight: 700;
       font-size: 19px;
-      white-space: nowrap;
       color: var(--main-yellow);
     }
     
@@ -176,8 +195,8 @@
     }
     
     @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
     
     /* الكروت */
@@ -323,8 +342,8 @@
     }
 
     .time-display {
+      display: justify-content: space-between;
       display: flex;
-      justify-content: space-between;
       font-size: 12px;
       color: #aaa;
     }
@@ -385,58 +404,69 @@
       .audio-player-card {
         padding: 20px 15px;
       }
+      
+      .news-ticker-title {
+        font-size: 14px;
+        padding: 5px 14px;
+      }
     }
   </style>
 </head>
 <body>
   
-  <!-- حاوية تساقط الورد والثلج الهادئ والرقيق -->
+  <!-- حاوية الورد والثلج الهادئ والرقيق -->
   <div class="snow-rose-container" id="snowRoseContainer"></div>
   
   <!-- رأس الصفحة بخلفية انسيابية (Curve) -->
   <header class="header-wave">
     <div class="logo-container">
-      <div class="vip-badge">🩷</div>
+      <div class="vip-badge">🩷 ͜͡👫</div>
       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgusDBYHUxRdSSUPS15qi5rKvzG3wUiu6J4-mhlJ92vGk2ZZrnW0Env4rTP8DJgT02yXlfXZUqQf9b5EQp9hrYrn-hPLZbhsSrwLnCbHBA4HnQHPwhqZOxGPx4faFh9Oq3zewflzj3IrDR7kWwQTdlycjuYllgDyvQQBKIlQF3YXWyfIngdaPYU9pLo1eA/s720/photo_2026-10-31_17-26-40.jpg" alt="WEKA VIP Logo" class="logo">
     </div>
     
-    <h1>ويـــڪـــا هــيـفـــضل ڪبــيــرهــــا ☑😱</h1>
-    <p class="subtitle">مش كل اللي كتب كود اصبح مطور مع تحياتي ويڪا 😵</p>
+    <h1>أنـت طـيـبـة ☑</h1>
+    <p class="subtitle">طـيـبـة لـدرجـة لا تـليـق بهذا الـعـالـم الـسـيء ! </p>
   </header>
   
-  <!-- الشريط المتحرك -->
+  <!-- عنوان شريط الأخبار -->
+  <div class="news-ticker-title">
+    <span>⚡</span>
+    <span>الـصـبـࢪ يــا مــلــــك شـريـط أحـدث الأخـبـار والـصـدمـات</span>
+    <span>👇</span>
+  </div>
+
+  <!-- الشريط المتحرك (من الشمال لليمين) -->
   <div class="scroll-text">
     <div class="marquee">
-      <span>لو البلد كان فيها قانون كان زمن ويڪا مسجون 🥱</span>
-      <span>ويڪا رقم واحد علي الڪوڪب 😈</span>
-      <span>خلي بالك من ويڪا 👿⚡</span>
-      <span>ويڪا مش هتوقف عن الصدمات 😎</span>
-      <span>WEKA VIP الأعلي دائماً 👑</span>
-      <span>لو البلد كان فيها قانون كان زمن ويڪا مسجون 🥱</span>
-      <span>ويڪا رقم واحد علي الڪوڪب 😈</span>
-      <span>خلي بالك من ويڪا 👿⚡</span>
+      <span>أتوهج بالحب معك، أمشي بين الناس كأنني شمس ..</span>
+      <span>أتوهج بالحب معك، أمشي بين الناس كأنني شمس ..</span>
+      <span>بدعيلك تفوز بالحرب .. يلي إنت مش جايب سيرتها لحد .</span>
+      <span>بدعيلك تفوز بالحرب .. يلي إنت مش جايب سيرتها لحد .</span>
+      <span>وارزقنا قرارة العين بما نُحب على الوجه الذي تُحب .</span>
+      <span>وارزقنا قرارة العين بما نُحب على الوجه الذي تُحب .</span>
+      <span>20 _ 12 _ 2008</span>
     </div>
   </div>
   
   <!-- الكروت -->
   <div class="cards-container">
     <div class="card">
-      <div class="card-icon">👑</div>
-      <h3>WEKA VIP</h3>
-      <p>༆💛 خــلَــي بــآلَك مـــن ويڪا 💛༆</p>
-      <p>ويڪا مش مجرد حساب، دي مدرسة في عالم التكنولوجيا والصدمات. الجرأة والإبداع سمة أساسية هنا.</p>
+      <div class="card-icon">👫🏻</div>
+      <h3>حـڪـمه الـيـوم</h3>
+      <p>༆💛 ربما لا تصدقين لكننيا 💜༆</p>
+      <p>أحتفظ بصورة لك و انت تضحكين أعود إليها كلما ضاقت بي الحياة كأنها دليل على أنني كنت يوما حيا يقويك وهي أغلى ما املك.</p>
     </div>
     
     <div class="card">
-      <div class="card-icon">⚡</div>
-      <h3>الصدمات التقنية</h3>
-      <p>بنقدم محتوي صادم وتقني بيقلب الموازين. خليك متابع دايماً عشان تفضل في قلب الحدث.</p>
+      <div class="card-icon">❤</div>
+      <h3>بــــحــبـك</h3>
+      <p>أحبك رغم معرفتي أنني لا استطيع الوصول إليك أحبك رغم أن الحب لم يعد يملك وسيلة ليجمعنا و أشتاق إليك رغم أنني أعرف أن اشتياقي لن يغير شيئا لا أنا استطيع ان آتيك ولا أنت تستطيعين العودة إلى.</p>
     </div>
     
     <div class="card">
       <div class="card-icon">🔥</div>
-      <h3>رقم واحد</h3>
-      <p>ويڪا رقم واحد في تقديم المحتوي الصادم والمميز. دايماً بيقدم اللي مش موجود في أي مكان تاني.</p>
+      <h3>رساله سريه</h3>
+      <p>أخجل حين تلتقي عيناي بعينيك فأخفي الكلام ويفضح قلبي صمتي أريد أن أقول الكثير لكن الخجل يسرق مني حروفي.</p>
     </div>
   </div>
 
@@ -445,11 +475,11 @@
     <div class="audio-player-card">
       <div class="audio-title">
         <span>🎧</span>
-        <span>مشغل الصوت الخاص بـ WEKA VIP</span>
+        <span>ريكورد سـري مـن ويـڪـا</span>
       </div>
 
       <!-- عنصر الصوت (ضع رابط الأغنية المباشر هنا) -->
-      <audio id="myAudio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+      <audio id="myAudio" src="https://www.youtube.com/embed/hcdZWBQF83M?si=IiNIQcGaI4aPbISE"></audio>
 
       <div class="audio-controls">
         <button class="play-btn" id="playBtn">▶</button>
@@ -468,7 +498,7 @@
   
   <!-- الفوتر -->
   <footer>
-    <div class="copyright">© 2025 WEKA VIP - جميع الحقوق محفوظة</div>
+    <div class="copyright">جميع الحقوق محفوظة لـي ويڪا ✔ ✗</div>
     <p>ممنوع النسخ أو التقليد، ويڪا بيشوف كل حاجة 👀</p>
     <div class="warning">⚠️ خلي بالك من ويڪا ⚠️</div>
   </footer>
