@@ -34,14 +34,13 @@
       padding-bottom: 40px;
     }
     
-    /* حاوية الورد والثلج المتساقط بالراحة وبشكل رقيق */
     .snow-rose-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 1; /* فوق الخلفية وتحت المحتوى عشان ميعطلش الكراسات والأزرار */
+      z-index: 1;
       pointer-events: none;
       overflow: hidden;
     }
@@ -59,19 +58,14 @@
         transform: translateY(-50px) translateX(0) rotate(0deg);
         opacity: 0;
       }
-      10% {
-        opacity: 0.8;
-      }
-      90% {
-        opacity: 0.8;
-      }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.8; }
       100% {
         transform: translateY(105vh) translateX(30px) rotate(360deg);
         opacity: 0;
       }
     }
 
-    /* كيرف رأس الصفحة */
     .header-wave {
       position: relative;
       background: linear-gradient(180deg, rgba(255,0,0,0.15) 0%, transparent 100%);
@@ -102,11 +96,6 @@
     @keyframes logoGlow {
       0% { box-shadow: 0 0 20px var(--glow-red); }
       100% { box-shadow: 0 0 45px var(--glow-red), 0 0 70px rgba(255, 0, 0, 0.4); }
-    }
-    
-    .logo:hover {
-      transform: scale(1.04) rotate(1deg);
-      box-shadow: 0 0 55px var(--glow-red);
     }
     
     .vip-badge {
@@ -146,7 +135,6 @@
       font-weight: 600;
     }
 
-    /* عنوان شريط الأخبار */
     .news-ticker-title {
       display: inline-flex;
       align-items: center;
@@ -165,7 +153,6 @@
       box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
     }
     
-    /* الشريط المتحرك (من الشمال لليمين) */
     .scroll-text {
       background: rgba(0, 0, 0, 0.9);
       border-top: 2px solid var(--main-red);
@@ -199,7 +186,6 @@
       100% { transform: translateX(100%); }
     }
     
-    /* الكروت */
     .cards-container {
       display: flex;
       flex-wrap: wrap;
@@ -257,7 +243,6 @@
       margin-bottom: 12px;
     }
 
-    /* مشغل الريكورد الصوتي */
     .audio-section {
       max-width: 500px;
       margin: 40px auto;
@@ -342,13 +327,12 @@
     }
 
     .time-display {
-      display: justify-content: space-between;
       display: flex;
+      justify-content: space-between;
       font-size: 12px;
       color: #aaa;
     }
     
-    /* الفوتر */
     footer {
       margin-top: 50px;
       padding: 25px 20px;
@@ -381,46 +365,15 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0.6; }
     }
-    
-    /* التجاوب مع الجوال */
-    @media (max-width: 480px) {
-      .logo {
-        max-width: 210px;
-      }
-      
-      h1 {
-        font-size: 24px;
-      }
-      
-      .subtitle {
-        font-size: 15px;
-      }
-      
-      .vip-badge {
-        font-size: 13px;
-        padding: 5px 12px;
-      }
-
-      .audio-player-card {
-        padding: 20px 15px;
-      }
-      
-      .news-ticker-title {
-        font-size: 14px;
-        padding: 5px 14px;
-      }
-    }
   </style>
 </head>
 <body>
   
-  <!-- حاوية الورد والثلج الهادئ والرقيق -->
   <div class="snow-rose-container" id="snowRoseContainer"></div>
   
-  <!-- رأس الصفحة بخلفية انسيابية (Curve) -->
   <header class="header-wave">
     <div class="logo-container">
-      <div class="vip-badge">🩷 ͜͡👫</div>
+      <div class="vip-badge">🩷 ͜͡👫</div>
       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgusDBYHUxRdSSUPS15qi5rKvzG3wUiu6J4-mhlJ92vGk2ZZrnW0Env4rTP8DJgT02yXlfXZUqQf9b5EQp9hrYrn-hPLZbhsSrwLnCbHBA4HnQHPwhqZOxGPx4faFh9Oq3zewflzj3IrDR7kWwQTdlycjuYllgDyvQQBKIlQF3YXWyfIngdaPYU9pLo1eA/s720/photo_2026-10-31_17-26-40.jpg" alt="WEKA VIP Logo" class="logo">
     </div>
     
@@ -428,14 +381,12 @@
     <p class="subtitle">طـيـبـة لـدرجـة لا تـليـق بهذا الـعـالـم الـسـيء ! </p>
   </header>
   
-  <!-- عنوان شريط الأخبار -->
   <div class="news-ticker-title">
     <span>⚡</span>
     <span>الـصـبـࢪ يــا مــلــــك شـريـط أحـدث الأخـبـار والـصـدمـات</span>
     <span>👇</span>
   </div>
 
-  <!-- الشريط المتحرك (من الشمال لليمين) -->
   <div class="scroll-text">
     <div class="marquee">
       <span>أتوهج بالحب معك، أمشي بين الناس كأنني شمس ..</span>
@@ -448,7 +399,6 @@
     </div>
   </div>
   
-  <!-- الكروت -->
   <div class="cards-container">
     <div class="card">
       <div class="card-icon">👫🏻</div>
@@ -470,7 +420,7 @@
     </div>
   </div>
 
-  <!-- قسم مشغل الريكورد الصوتي -->
+  <!-- قسم مشغل الريكورد الصوتي عبر يوتيوب بدون إظهار الفيديو -->
   <div class="audio-section">
     <div class="audio-player-card">
       <div class="audio-title">
@@ -478,8 +428,8 @@
         <span>ريكورد سـري مـن ويـڪـا</span>
       </div>
 
-      <!-- عنصر الصوت (ضع رابط الأغنية المباشر هنا) -->
-      <audio id="myAudio" src="https://vocaroo.com/embed/113u1apo2495?autoplay=0"></audio>
+      <!-- عنصر يوتيوب مخفي تماماً -->
+      <div id="hidden-youtube-player" style="display:none;"></div>
 
       <div class="audio-controls">
         <button class="play-btn" id="playBtn">▶</button>
@@ -496,7 +446,6 @@
     </div>
   </div>
   
-  <!-- الفوتر -->
   <footer>
     <div class="copyright">جميع الحقوق محفوظة لـي ويڪا ✔ ✗</div>
     <p>ممنوع النسخ أو التقليد، ويڪا بيشوف كل حاجة 👀</p>
@@ -504,89 +453,129 @@
   </footer>
   
   <script>
-    // توليد تأثير الورد والثلج الهادئ والرقيق بشكل عشوائي
+    // توليد الورد والثلج
     document.addEventListener('DOMContentLoaded', function() {
       const container = document.getElementById('snowRoseContainer');
-      const symbols = ['❄', '🌸', '✨', '🌹', '❄', '🌸']; // مزيج من الثلج والورد الناعم واللمعات
-      const count = 20; // عدد العناصر عشان يكون خفيف ورقيق ومش زحمة
+      const symbols = ['❄', '🌸', '✨', '🌹', '❄', '🌸'];
+      const count = 20;
       
       for (let i = 0; i < count; i++) {
         const item = document.createElement('div');
         item.classList.add('falling-item');
-        
-        // اختيار شكل عشوائي (وردة أو ثلجة أو لمعة)
         item.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-        
-        // مكان عشوائي في العرض
         item.style.left = Math.random() * 100 + '%';
-        
-        // حجم رقيق وصغير
-        const size = Math.random() * 12 + 10; // بين 10px و 22px
+        const size = Math.random() * 12 + 10;
         item.style.fontSize = `${size}px`;
-        
-        // سرعة سقوط بطيئة وهادية عشان يبقى رقيق
-        const duration = Math.random() * 10 + 8; // بين 8 و 18 ثانية
+        const duration = Math.random() * 10 + 8;
         item.style.animationDuration = `${duration}s`;
-        
-        // تأخير عشوائي للبداية عشان ميبدوش كلهم سوا
         const delay = Math.random() * 10;
         item.style.animationDelay = `${delay}s`;
-        
-        // شفافية عشوائية خفيفة
         item.style.opacity = Math.random() * 0.5 + 0.3;
-        
         container.appendChild(item);
       }
     });
 
-    // التحكم في مشغل الريكورد الصوتي
-    const audio = document.getElementById('myAudio');
+    // تحميل مكتبة يوتيوب API للتحكم بالصوت في الخلفية
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var ytPlayer;
+    var updateTimer;
+
+    // استبدل "113u1apo2495" بمعرف فيديو يوتيوب الخاص بك (رابط يوتيوب يحتوي على معرّف الفيديو مثل dQw4w9WgXcQ)
+    // أو إذا كان الرابط كاملاً استخرج الـ ID منه وضعه هنا:
+    const youtubeVideoId = '-csWXqFFzdU'; // ضع الـ ID الخاص بفيديو يوتيوب هنا
+
+    function onYouTubeIframeAPIReady() {
+      ytPlayer = new YT.Player('hidden-youtube-player', {
+        height: '0',
+        width: '0',
+        videoId: youtubeVideoId,
+        playerVars: {
+          'playsinline': 1,
+          'controls': 0
+        },
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
     const playBtn = document.getElementById('playBtn');
     const progressBar = document.getElementById('progressBar');
     const progressFill = document.getElementById('progressFill');
     const currentTimeEl = document.getElementById('currentTime');
     const durationEl = document.getElementById('duration');
 
+    function onPlayerReady(event) {
+      updateDuration();
+    }
+
+    function updateDuration() {
+      if (ytPlayer && ytPlayer.getDuration) {
+        let dur = ytPlayer.getDuration();
+        durationEl.textContent = formatTime(dur);
+      }
+    }
+
     playBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-        playBtn.textContent = '❚❚';
-      } else {
-        audio.pause();
+      if (!ytPlayer) return;
+      var state = ytPlayer.getPlayerState();
+      if (state === YT.PlayerState.PLAYING) {
+        ytPlayer.pauseVideo();
         playBtn.textContent = '▶';
+        clearInterval(updateTimer);
+      } else {
+        ytPlayer.playVideo();
+        playBtn.textContent = '❚❚';
+        startTracking();
       }
     });
 
-    audio.addEventListener('timeupdate', () => {
-      if (audio.duration) {
-        const progressPercent = (audio.currentTime / audio.duration) * 100;
-        progressFill.style.width = `${progressPercent}%`;
-
-        let currentMinutes = Math.floor(audio.currentTime / 60);
-        let currentSeconds = Math.floor(audio.currentTime % 60);
-        if (currentSeconds < 10) currentSeconds = `0${currentSeconds}`;
-        currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`;
-
-        let durationMinutes = Math.floor(audio.duration / 60);
-        let durationSeconds = Math.floor(audio.duration % 60);
-        if (durationSeconds < 10) durationSeconds = `0${durationSeconds}`;
-        durationEl.textContent = `${durationMinutes}:${durationSeconds}`;
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.ENDED) {
+        playBtn.textContent = '▶';
+        progressFill.style.width = '0%';
+        currentTimeEl.textContent = '00:00';
+        clearInterval(updateTimer);
       }
-    });
+    }
+
+    function startTracking() {
+      clearInterval(updateTimer);
+      updateTimer = setInterval(() => {
+        if (ytPlayer && ytPlayer.getCurrentTime && ytPlayer.getDuration) {
+          let current = ytPlayer.getCurrentTime();
+          let duration = ytPlayer.getDuration();
+          
+          let percent = (current / duration) * 100;
+          progressFill.style.width = `${percent}%`;
+          currentTimeEl.textContent = formatTime(current);
+          durationEl.textContent = formatTime(duration);
+        }
+      }, 500);
+    }
 
     progressBar.addEventListener('click', (e) => {
+      if (!ytPlayer || !ytPlayer.getDuration) return;
       const width = progressBar.clientWidth;
       const clickX = e.offsetX;
-      const duration = audio.duration;
-      if (duration) {
-        audio.currentTime = (clickX / width) * duration;
-      }
+      const duration = ytPlayer.getDuration();
+      const seekTime = (clickX / width) * duration;
+      ytPlayer.seekTo(seekTime, true);
+      progressFill.style.width = `${(clickX / width) * 100}%`;
     });
 
-    audio.addEventListener('ended', () => {
-      playBtn.textContent = '▶';
-      progressFill.style.width = '0%';
-    });
+    function formatTime(seconds) {
+      if (isNaN(seconds)) return "00:00";
+      let mins = Math.floor(seconds / 60);
+      let secs = Math.floor(seconds % 60);
+      if (secs < 10) secs = `0${secs}`;
+      return `${mins}:${secs}`;
+    }
   </script>
   
 </body>
