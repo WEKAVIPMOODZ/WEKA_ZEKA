@@ -470,7 +470,7 @@
     </div>
   </div>
 
-  <!-- قسم مشغل الريكورد الصوتي عبر يوتيوب -->
+  <!-- قسم مشغل الريكورد الصوتي -->
   <div class="audio-section">
     <div class="audio-player-card">
       <div class="audio-title">
@@ -478,8 +478,8 @@
         <span>ريكورد سـري مـن ويـڪـا</span>
       </div>
 
-      <!-- مشغل اليوتيوب المخفي للصوت فقط -->
-      <div id="youtube-player" style="display:none;"></div>
+      <!-- عنصر الصوت (ضع رابط الأغنية المباشر هنا) -->
+      <audio id="myAudio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
       <div class="audio-controls">
         <button class="play-btn" id="playBtn">▶</button>
@@ -507,124 +507,40 @@
     // توليد تأثير الورد والثلج الهادئ والرقيق بشكل عشوائي
     document.addEventListener('DOMContentLoaded', function() {
       const container = document.getElementById('snowRoseContainer');
-      const symbols = ['❄', '🌸', '✨', '🌹', '❄', '🌸']; 
-      const count = 20; 
+      const symbols = ['❄', '🌸', '✨', '🌹', '❄', '🌸']; // مزيج من الثلج والورد الناعم واللمعات
+      const count = 20; // عدد العناصر عشان يكون خفيف ورقيق ومش زحمة
       
       for (let i = 0; i < count; i++) {
         const item = document.createElement('div');
         item.classList.add('falling-item');
+        
+        // اختيار شكل عشوائي (وردة أو ثلجة أو لمعة)
         item.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+        
+        // مكان عشوائي في العرض
         item.style.left = Math.random() * 100 + '%';
-        const size = Math.random() * 12 + 10; 
+        
+        // حجم رقيق وصغير
+        const size = Math.random() * 12 + 10; // بين 10px و 22px
         item.style.fontSize = `${size}px`;
-        const duration = Math.random() * 10 + 8; 
+        
+        // سرعة سقوط بطيئة وهادية عشان يبقى رقيق
+        const duration = Math.random() * 10 + 8; // بين 8 و 18 ثانية
         item.style.animationDuration = `${duration}s`;
+        
+        // تأخير عشوائي للبداية عشان ميبدوش كلهم سوا
         const delay = Math.random() * 10;
         item.style.animationDelay = `${delay}s`;
+        
+        // شفافية عشوائية خفيفة
         item.style.opacity = Math.random() * 0.5 + 0.3;
+        
         container.appendChild(item);
       }
     });
 
-    // ==========================================
-    // ضع رابط فيديو اليوتيوب هنا بكل سهولة 👇
-    // ==========================================
-    const youtubeAudioUrl = "https://www.youtube.com/embed/TX8rd6iqBqc?si=5B9P5Io78ksRdAC5";
-
-    // استخراج معرّف فيديو اليوتيوب تلقائياً من الرابط
-    function getYouTubeId(url) {
-      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-      const match = url.match(regExp);
-      return (match && match[2].length === 11) ? match[2] : 'M7lc1UVf-VE';
-    }
-
-    const videoId = getYouTubeId(youtubeAudioUrl);
-
-    let ytPlayer;
-    let isPaused = true;
-    let currentTimeVal = 0;
-    let durationVal = 0;
-    let timeUpdateListeners = [];
-    let endedListeners = [];
-
-    // تحميل مكتبة يوتيوب API
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = function() {
-      ytPlayer = new YT.Player('youtube-player', {
-        height: '0',
-        width: '0',
-        videoId: videoId,
-        playerVars: {
-          'playsinline': 1,
-          'controls': 0,
-          'disablekb': 1
-        },
-        events: {
-          'onReady': (e) => {
-            durationVal = ytPlayer.getDuration();
-          },
-          'onStateChange': (e) => {
-            if (e.data === YT.PlayerState.PLAYING) {
-              isPaused = false;
-              if (!window._ytInterval) {
-                window._ytInterval = setInterval(() => {
-                  if (ytPlayer && ytPlayer.getCurrentTime) {
-                    currentTimeVal = ytPlayer.getCurrentTime();
-                    durationVal = ytPlayer.getDuration() || durationVal;
-                    timeUpdateListeners.forEach(cb => cb());
-                  }
-                }, 250);
-              }
-            } else if (e.data === YT.PlayerState.PAUSED) {
-              isPaused = true;
-            } else if (e.data === YT.PlayerState.ENDED) {
-              isPaused = true;
-              if (window._ytInterval) {
-                clearInterval(window._ytInterval);
-                window._ytInterval = null;
-              }
-              endedListeners.forEach(cb => cb());
-            }
-          }
-        }
-      });
-    };
-
-    // ربط مشغل يوتيوب ليعمل تماماً مثل عنصر الصوت العادي
-    const audio = {
-      get paused() { return isPaused; },
-      play() {
-        if (ytPlayer && ytPlayer.playVideo) {
-          ytPlayer.playVideo();
-        }
-      },
-      pause() {
-        if (ytPlayer && ytPlayer.pauseVideo) {
-          ytPlayer.pauseVideo();
-        }
-      },
-      get duration() { return durationVal; },
-      get currentTime() { return currentTimeVal; },
-      set currentTime(val) {
-        currentTimeVal = val;
-        if (ytPlayer && ytPlayer.seekTo) {
-          ytPlayer.seekTo(val, true);
-        }
-      },
-      addEventListener(event, callback) {
-        if (event === 'timeupdate') {
-          timeUpdateListeners.push(callback);
-        } else if (event === 'ended') {
-          endedListeners.push(callback);
-        }
-      }
-    };
-
     // التحكم في مشغل الريكورد الصوتي
+    const audio = document.getElementById('myAudio');
     const playBtn = document.getElementById('playBtn');
     const progressBar = document.getElementById('progressBar');
     const progressFill = document.getElementById('progressFill');
